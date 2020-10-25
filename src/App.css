@@ -1,0 +1,14 @@
+.App-header {
+  min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  margin: 10px 20px;
+}
+
+main {
+  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
