@@ -1,0 +1,59 @@
+{
+    "auth": {
+        "chordexplorer41e95509": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        }
+    },
+    "storage": {
+        "chords": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "function": {
+        "fetchChords": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda",
+            "dependsOn": [
+                {
+                    "category": "storage",
+                    "resourceName": "chords",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ],
+                    "attributeEnvMap": {
+                        "Name": "TABLE_NAME",
+                        "Arn": "TABLE_ARN"
+                    }
+                }
+            ]
+        }
+    },
+    "api": {
+        "chords": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "fetchChords",
+                    "attributes": [
+                        "Name",
+                        "Arn"
+                    ]
+                }
+            ]
+        }
+    },
+    "hosting": {
+        "amplifyhosting": {
+            "service": "amplifyhosting",
+            "type": "cicd"
+        }
+    }
+}

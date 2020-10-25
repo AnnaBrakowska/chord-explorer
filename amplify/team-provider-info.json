@@ -1,0 +1,26 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-chordexplorer-dev-134207-authRole",
+            "UnauthRoleArn": "arn:aws:iam::957329975242:role/amplify-chordexplorer-dev-134207-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::957329975242:role/amplify-chordexplorer-dev-134207-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-chordexplorer-dev-134207-deployment",
+            "UnauthRoleName": "amplify-chordexplorer-dev-134207-unauthRole",
+            "StackName": "amplify-chordexplorer-dev-134207",
+            "StackId": "arn:aws:cloudformation:us-east-1:957329975242:stack/amplify-chordexplorer-dev-134207/67a798c0-16e9-11eb-8a2d-0ab389d40b93",
+            "AmplifyAppId": "dl8te1ylj497b"
+        },
+        "categories": {
+            "auth": {
+                "chordexplorer41e95509": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "dl8te1ylj497b",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}

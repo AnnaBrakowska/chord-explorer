@@ -1,0 +1,5 @@
+{
+    "tableName": "chords",
+    "partitionKeyName": "chord",
+    "partitionKeyType": "S"
+}
