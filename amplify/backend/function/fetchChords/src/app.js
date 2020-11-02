@@ -13,12 +13,14 @@ var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware'
 var bodyParser = require('body-parser')
 var express = require('express')
 
-AWS.config.update({ region: process.env.TABLE_REGION });
+AWS.config.update({ region: 'us-east-1' });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "chords";
-if(process.env.ENV && process.env.ENV !== "NONE") {
+let indexName = "chordsByType";
+
+if (process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + '-' + process.env.ENV;
 }
 
@@ -38,7 +40,7 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
@@ -46,7 +48,7 @@ app.use(function(req, res, next) {
 
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {
-  switch(type) {
+  switch (type) {
     case "N":
       return Number.parseInt(param);
     default:
@@ -55,23 +57,49 @@ const convertUrlType = (param, type) => {
 }
 
 /********************************
+ * HTTP Get method for list of objects - GSI*
+ ********************************/
+
+app.get(path + "/advanced" + hashKeyPath, function (req, res) {
+  let queryParams = {
+    TableName: tableName,
+    IndexName: indexName,
+    KeyConditionExpression: "#chord_type=:ty and #chord_name=:na ",
+    ExpressionAttributeNames: { "#chord_type": "type", "#chord_name": "name" },
+    ExpressionAttributeValues: { ":ty": "major", ":na": "C" }
+  };
+
+  dynamodb.query(queryParams, (err, data) => {
+    if (err) {
+      res.statusCode = 500;
+      res.json({ error: 'Could not load items: ' + err });
+    } else {
+      res.json(data.Items);
+    }
+  });
+});
+
+
+
+
+/********************************
  * HTTP Get method for list objects *
  ********************************/
 
-app.get(path + hashKeyPath, function(req, res) {
+app.get(path + hashKeyPath, function (req, res) {
   var condition = {}
   condition[partitionKeyName] = {
     ComparisonOperator: 'EQ'
   }
 
   if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
+    condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH];
   } else {
     try {
-      condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
-    } catch(err) {
+      condition[partitionKeyName]['AttributeValueList'] = [convertUrlType(req.params[partitionKeyName], partitionKeyType)];
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
 
@@ -83,7 +111,7 @@ app.get(path + hashKeyPath, function(req, res) {
   dynamodb.scan(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;
-      res.json({error: 'Could not load items: ' + err});
+      res.json({ error: 'Could not load items: ' + err });
     } else {
       res.json(data.Items);
     }
@@ -94,7 +122,7 @@ app.get(path + hashKeyPath, function(req, res) {
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
+app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
   var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -102,17 +130,17 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
     params[partitionKeyName] = req.params[partitionKeyName];
     try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
-    } catch(err) {
+    } catch (err) {
       res.statusCode = 500;
-      res.json({error: 'Wrong column type ' + err});
+      res.json({ error: 'Wrong column type ' + err });
     }
   }
 
@@ -121,25 +149,26 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
     Key: params
   }
 
-  dynamodb.get(getItemParams,(err, data) => {
-    if(err) {
+  dynamodb.get(getItemParams, (err, data) => {
+    if (err) {
       res.statusCode = 500;
-      res.json({error: 'Could not load items: ' + err.message});
+      res.json({ error: 'Could not load items: ' + err.message });
     } else {
       if (data.Item) {
         res.json(data.Item);
       } else {
-        res.json(data) ;
+        res.json(data);
       }
     }
   });
 });
 
-app.listen(3000, function() {
-    console.log("App started")
+app.listen(3000, function () {
+  console.log("App started")
 });
 
 // Export the app object. When executing the application local this does nothing. However,
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
 module.exports = app
+
