@@ -33,23 +33,3 @@ export const SearchButton = styled.button`
         box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     }
 `
-
-export const SearchDropdown = styled.select`
-    width: 100px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    &:focus {
-        outline: none;
-        border: 1px solid orange;
-    }
-`
-
-export const SearchOptions = styled.ul`
-    display: flex;
-`
-
-export const SearchOption = styled.li`
-    list-style: none;
-`
-
-export const SearchOptionTitle = styled.p``

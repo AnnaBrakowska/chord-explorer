@@ -32,7 +32,7 @@ function InfoSection({
                             <TextWrapper>
                                 <Heading lightText={lightText}>{headline}</Heading>
                                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                                <Link to='/contact'>
+                                <Link to='/sign-up'>
                                     <Button big fontBig primary={primary}>
                                         {buttonLabel}
                                     </Button>
