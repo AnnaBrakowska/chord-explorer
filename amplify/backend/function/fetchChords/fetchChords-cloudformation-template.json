@@ -77,7 +77,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-chordexplorer-dev-134207-deployment",
-					"S3Key": "amplify-builds/fetchChords-71666a6836514273447a-build.zip"
+					"S3Key": "amplify-builds/fetchChords-4e4b77516d796e527565-build.zip"
 				}
 			}
 		},

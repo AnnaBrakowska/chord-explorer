@@ -1,15 +1,15 @@
 import React from 'react';
 import { SearchContainer, SearchInput, SearchButton } from './Search.elements'
 
-function Search({ searchPlaceholder, submit, change, value }) {
+function Search({ placeholder, change, value }) {
     return (
         <SearchContainer>
-            <SearchInput placeholder={searchPlaceholder} onChange={(e) => change(e.target.value)} value={value} />
-            <SearchButton onClick={() => {
-                submit()
-                change('')
-            }}>
-                <span role="img" aria-label="icon">🔍</span>
+            <SearchInput placeholder={placeholder} onChange={(e) => change(e.target.value)} value={value} />
+            <SearchButton onClick={() => value && change('')} >
+                {
+                    value ? <span role="img" aria-label="icon">X</span>
+                        : <span role="img" aria-label="icon">🔍</span>
+                }
             </SearchButton>
         </SearchContainer>
     )
