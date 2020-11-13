@@ -14,9 +14,8 @@ function Chords() {
 
     // LOADS ALL CHORDS
     useEffect(() => {
-        API.get('chords', `/chords/all`).then(chords => {
+        API.get('chordexplorer', `/chords`).then(chords => {
             setAllChords(chords)
-            console.log(allChords)
         }, '')
     }, [])
 

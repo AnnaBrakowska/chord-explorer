@@ -1,0 +1,73 @@
+{
+    "paths": [
+        {
+            "name": "/chords",
+            "lambdaFunction": "fetchAllChords",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/chords"
+        },
+        {
+            "name": "/user",
+            "lambdaFunction": "fetchUser",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/user"
+        },
+        {
+            "name": "/",
+            "lambdaFunction": "fetchWelcome",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/"
+        }
+    ],
+    "resourceName": "chordexplorer",
+    "apiName": "chordexplorer",
+    "functionArns": [
+        {
+            "lambdaFunction": "fetchAllChords"
+        },
+        {
+            "lambdaFunction": "fetchUser"
+        },
+        {
+            "lambdaFunction": "fetchWelcome"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-chordexplorer-dev-134207-authRole",
+        "unAuthRoleName": "amplify-chordexplorer-dev-134207-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fetchAllChords",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "fetchUser",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "fetchWelcome",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
