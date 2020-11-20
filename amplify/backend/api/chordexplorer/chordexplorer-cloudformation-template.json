@@ -42,15 +42,15 @@
           
           
     
-          "functionfetchWelcomeName": {
+          "functionauthName": {
             "Type": "String",
-            "Default": "functionfetchWelcomeName"
+            "Default": "functionauthName"
           },
         
           
-          "functionfetchWelcomeArn": {
+          "functionauthArn": {
             "Type": "String",
-            "Default": "functionfetchWelcomeArn"
+            "Default": "functionauthArn"
           }
         
           
@@ -520,7 +520,7 @@
                 }
               },   
               
-              "/": {
+              "/authorize": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -606,7 +606,7 @@
                             
                             {
                                 
-                                "Ref": "functionfetchWelcomeArn"
+                                "Ref": "functionauthArn"
                             },
                             
                             "/invocations"
@@ -619,7 +619,7 @@
                   }
                 }
               },
-              "//{proxy+}": {
+              "/authorize/{proxy+}": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -705,7 +705,7 @@
                           
                           {
                             
-                            "Ref": "functionfetchWelcomeArn"
+                            "Ref": "functionauthArn"
                           },
                           
                           "/invocations"
@@ -830,12 +830,12 @@
         },
         
         
-        "functionfetchWelcomePermissionchordexplorer": {
+        "functionauthPermissionchordexplorer": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionfetchWelcomeName"
+                        "Ref":  "functionauthName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -865,7 +865,7 @@
         
         
         
-      "DeploymentAPIGWchordexplorer": {
+      "DeploymentAPIGWchordexplorer95deb5b1": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",

@@ -17,12 +17,11 @@
             "policyResourceName": "/user"
         },
         {
-            "name": "/",
-            "lambdaFunction": "fetchWelcome",
+            "name": "/authorize",
+            "lambdaFunction": "auth",
             "privacy": {
                 "open": true
-            },
-            "policyResourceName": "/"
+            }
         }
     ],
     "resourceName": "chordexplorer",
@@ -35,7 +34,7 @@
             "lambdaFunction": "fetchUser"
         },
         {
-            "lambdaFunction": "fetchWelcome"
+            "lambdaFunction": "auth"
         }
     ],
     "privacy": {
@@ -63,11 +62,12 @@
         },
         {
             "category": "function",
-            "resourceName": "fetchWelcome",
+            "resourceName": "auth",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "95deb5b1"
 }

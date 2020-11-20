@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavLink, NavItem, NavItemBtn, NavBtnLink } from './Navbar.elements'
 import { FaTimes, FaBars } from 'react-icons/fa'
-import { Button } from '../../globalStyles'
+import { Button, Column } from '../../globalStyles'
 
 function Navbar() {
     const [click, setClick] = useState(false)
@@ -23,36 +23,34 @@ function Navbar() {
     }
 
     return (
-        <>
-            <Nav>
-                <NavbarContainer>
-                    <NavLogo>Chord</NavLogo>
-                    <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}
-                    </MobileIcon>
-                    <NavMenu onClick={handleClick} click={click}>
-                        <NavItem>
-                            <NavLink to="/">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/chords">Chords</NavLink>
-                        </NavItem>
+        <NavbarContainer>
+            <Column>
+                <NavLogo>Chords</NavLogo>
+                <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}
+                </MobileIcon>
+                <NavMenu onClick={handleClick} click={click}>
+                    <NavItem>
+                        <NavLink to="/">Home</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to="/chords">Chords</NavLink>
+                    </NavItem>
 
-                        <NavItemBtn>
-                            {button ? (
+                    <NavItemBtn>
+                        {button ? (
+                            <NavBtnLink to="/sign-up">
+                                <Button>SIGN UP</Button>
+                            </NavBtnLink>
+                        ) : (
                                 <NavBtnLink to="/sign-up">
-                                    <Button>SIGN UP</Button>
+                                    <Button onClick={closeMobileMenu} fontBig primary>SIGN UP</Button>
                                 </NavBtnLink>
-                            ) : (
-                                    <NavBtnLink to="/sign-up">
-                                        <Button onClick={closeMobileMenu} fontBig primary>SIGN UP</Button>
-                                    </NavBtnLink>
-                                )
-                            }
-                        </NavItemBtn>
-                    </NavMenu>
-                </NavbarContainer>
-            </Nav>
-        </>
+                            )
+                        }
+                    </NavItemBtn>
+                </NavMenu>
+            </Column>
+        </NavbarContainer>
     )
 }
 

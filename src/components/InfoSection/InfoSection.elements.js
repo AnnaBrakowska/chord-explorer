@@ -1,26 +1,21 @@
 import styled from 'styled-components';
+import { Row, Column } from '../../globalStyles'
 
 export const InfoSec = styled.div`
   color: #fff;
-  padding: 50px 0;
+  padding: 150px 50px;
   background: ${({ lightBg }) => (lightBg ? '#fff' : '#101522')};
 `;
 
-export const InfoRow = styled.div`
-  display: flex;
-  margin: 0 -15px -15px -15px;
+export const InfoRow = styled(Row)`
   flex-wrap: wrap;
   align-items: center;
   flex-direction: row;
 `;
 
-export const InfoColumn = styled.div`
-  margin-bottom: 15px;
-  padding-right: 15px;
-  padding-left: 15px;
+export const InfoColumn = styled(Column)`
   flex: 1;
   max-width: 50%;
-  flex-basis: 50%;
   @media screen and (max-width: 768px) {
     max-width: 100%;
     flex-basis: 100%;

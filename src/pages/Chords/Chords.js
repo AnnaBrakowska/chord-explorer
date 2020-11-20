@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Search, Card } from '../../components'
-import { Container, Row, Column, Grid } from '../../globalStyles'
+import { Row, Column, Grid } from '../../globalStyles'
 
 import Amplify, { API } from 'aws-amplify';
 import config from '../../aws-exports'
@@ -38,25 +38,20 @@ function Chords() {
 
 
     return (
-        <Container>
-            <Row>
-                <Column>
-                    <Search placeholder="Type chord that you are looking for" change={filterChords} value={searchValue} />
-                </Column>
-            </Row>
-            <Row>
-            </Row>
-            <Row>
-                <Column>
-                    <Grid>
-                        {filteredChords && filteredChords.map((chord, i) => {
-                            return <Card title={`${chord.chord_name} ${chord.chord_type}`} chord={chord.chord} key={"chord-" + i} />
-                        })
-                        }
-                    </Grid>
-                </Column>
-            </Row>
-        </Container >
+        <Row>
+            <Column>
+                <Search placeholder="Type chord that you are looking for" change={filterChords} value={searchValue} />
+            </Column>
+
+            <Column>
+                <Grid>
+                    {filteredChords && filteredChords.map((chord, i) => {
+                        return <Card title={`${chord.chord_name} ${chord.chord_type}`} chord={chord.chord} key={"chord-" + i} />
+                    })
+                    }
+                </Grid>
+            </Column>
+        </Row>
     )
 }
 

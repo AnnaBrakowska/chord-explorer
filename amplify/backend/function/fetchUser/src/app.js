@@ -81,7 +81,7 @@ app.get('/user/:id/chords', (req, res) => {
 
 
 app.listen(3000, function () {
-    console.log("App started")
+    console.log("App started - fetchUser")
 });
 
 module.exports = app

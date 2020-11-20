@@ -9,9 +9,10 @@ import Signup from './pages/Signup/Signup'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const AppContainer = styled.div`
-    width: 1300px;
-    max-width: 80%;
-    margin: 64px auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:100vh;
 `
 
 function App() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Button } from '../../globalStyles';
+import { Button, Row, Column } from '../../globalStyles';
 import {
     InfoSec,
     InfoRow,
@@ -24,30 +24,26 @@ function InfoSection({
     alt
 }) {
     return (
-        <>
-            <InfoSec lightBg={lightBg}>
-                <Container>
-                    <InfoRow>
-                        <InfoColumn>
-                            <TextWrapper>
-                                <Heading lightText={lightText}>{headline}</Heading>
-                                <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                                <Link to='/sign-up'>
-                                    <Button big fontBig primary={primary}>
-                                        {buttonLabel}
-                                    </Button>
-                                </Link>
-                            </TextWrapper>
-                        </InfoColumn>
-                        <InfoColumn>
-                            <ImgWrapper>
-                                <Img src={img} alt={alt} />
-                            </ImgWrapper>
-                        </InfoColumn>
-                    </InfoRow>
-                </Container>
-            </InfoSec>
-        </>
+        <InfoSec lightBg={lightBg}>
+            <InfoRow>
+                <InfoColumn>
+                    <TextWrapper>
+                        <Heading lightText={lightText}>{headline}</Heading>
+                        <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
+                        <Link to='/sign-up'>
+                            <Button big fontBig primary={primary}>
+                                {buttonLabel}
+                            </Button>
+                        </Link>
+                    </TextWrapper>
+                </InfoColumn>
+                <InfoColumn>
+                    <ImgWrapper>
+                        <Img src={img} alt={alt} />
+                    </ImgWrapper>
+                </InfoColumn>
+            </InfoRow>
+        </InfoSec>
     );
 }
 

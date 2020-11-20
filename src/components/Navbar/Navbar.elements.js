@@ -1,26 +1,11 @@
 import styled from 'styled-components'
-import { Container } from '../../globalStyles'
+import { Row } from '../../globalStyles'
 import { Link } from 'react-router-dom'
 
-export const Nav = styled.nav`
+export const NavbarContainer = styled(Row)`
     height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-`
-
-
-export const NavbarContainer = styled(Container)`
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-
-
-    ${Container}
+    width: 100%;
+    ${Row}
 `;
 
 export const NavLogo = styled(Link)`
@@ -41,7 +26,7 @@ export const MobileIcon = styled.div`
         display:block;
         position: absolute;
         top: 0;
-        right: -30px;
+        right: -24px;
         transform: translate(-100%, 60%);
         font-size: 2rem;
         cursor: pointer;
@@ -55,7 +40,6 @@ export const NavMenu = styled.ul`
     text-align: center;
 
     @media screen and (max-width: 960px) {
-        box-shadow: 0 0 10px 0px lightgrey;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -66,6 +50,7 @@ export const NavMenu = styled.ul`
         opacity: 1;
         transition: all 0.5s ease;
         background: white;
+        z-index: 999;
     }
 `
 export const NavItem = styled.li`

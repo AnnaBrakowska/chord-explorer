@@ -46,29 +46,20 @@ export const Grid = styled.div`
     }
 `
 
-export const Container = styled.div`
-z-index: 1;
-width: 100%;
-max-width: 1300px;
-margin-right: auto;
-margin-left: auto;
-`
-
 export const Row = styled.div`
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  width: 100%;
 `;
 
 export const Column = styled.div`
-  position: relative;
-  margin-bottom: 15px;
-  flex: 1;
-  max-width: 100%;
-  flex-basis: 100%;
+  display: flex;
+  width: 100%;
+  margin: 0 24px;
+  width: 100%;
+  justify-content: space-between;
   @media screen and (max-width: 768px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
   }
 `;
 
