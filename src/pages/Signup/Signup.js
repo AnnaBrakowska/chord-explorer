@@ -7,7 +7,6 @@ import { Row, Column } from '../../globalStyles'
 import Amplify, { API } from 'aws-amplify';
 import config from '../../aws-exports'
 Amplify.configure(config)
-window.LOG_LEVEL = 'DEBUG'
 
 const SignupContainer = styled.div`
   padding: 150px 50px;
@@ -35,27 +34,28 @@ function Singup() {
     }
 
     const signUp = (e) => {
-        e.preventDefault();
-
-        API.post('chordexplorer', '/authorize/signup', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: { user: form }
-        }).then(res => {
-            if (res.user.user_id && !res.user.user_name) {
-                setSuccessMessage(res.message)
-                setErrorMessage('')
-                setUser(res.user)
-                updateForm(() => ({ ...form, formType: 'signIn' }))
-            } else {
-                setErrorMessage(res.message)
+        if (form.password && form.email && form.name) {
+            e.preventDefault()
+            API.post('chordexplorer', '/authorize/signup', {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: { user: form }
+            }).then(res => {
+                if (res.user.user_id && !res.user.user_name) {
+                    setSuccessMessage(res.message)
+                    setErrorMessage('')
+                    setUser(res.user)
+                    updateForm(() => ({ ...form, formType: 'signIn' }))
+                } else {
+                    setErrorMessage(res.message)
+                    setSuccessMessage('')
+                }
+            }).catch((err) => {
+                setErrorMessage('Something went wrong')
                 setSuccessMessage('')
-            }
-        }).catch((err) => {
-            setErrorMessage('Something went wrong')
-            setSuccessMessage('')
-        })
+            })
+        }
     }
 
     const switchForm = (formType) => {
@@ -64,34 +64,32 @@ function Singup() {
 
 
     const signIn = (e) => {
-        e.preventDefault()
-        console.log(form)
-
-        API.post('chordexplorer', '/authorize/signin', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: { user: form }
-        }).then(res => {
-            if (res.user.user_id) {
-                setSuccessMessage(res.message)
-                setErrorMessage('')
-                setUser(res.user)
-                updateForm(() => ({ ...form, formType: 'signedIn' }))
-            } else {
-                setErrorMessage(res.message)
+        if (form.password && form.email && form.name) {
+            e.preventDefault()
+            API.post('chordexplorer', '/authorize/signin', {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: { user: form }
+            }).then(res => {
+                if (res.message === 'Logged in') {
+                    setSuccessMessage(res.message)
+                    setErrorMessage('')
+                    setUser(res.user)
+                    updateForm(() => ({ ...form, formType: 'signedIn' }))
+                } else {
+                    setErrorMessage(res.message)
+                    setSuccessMessage('')
+                }
+            }).catch((err) => {
+                setErrorMessage('Something went wrong')
                 setSuccessMessage('')
-            }
-        }).catch((err) => {
-            console.log("Error: ", err)
-            setErrorMessage('Something went wrong')
-            setSuccessMessage('')
-        })
+            })
+        }
     }
 
     // const checkUser = async () => {
     //     try {
-    //         console.log('user', user)
     //         updateUser(user)
     //         updateForm(() => ({ ...form, formType: 'signedIn' }))
     //     } catch (err) {
@@ -111,7 +109,7 @@ function Singup() {
         { name: "password", required: true, placeholder: "Password", handler: onChange, type: "password" }]
 
     const buttonsConfig = [
-        { label: "Sign Up", handler: signUp, background: 'lightblue' },
+        { label: "Sign Up", handler: signUp, background: 'lightblue', type: 'submit' },
         { label: "Sign In", type: "button", handler: switchForm, background: 'orange', switch: 'signIn' }
     ]
 
@@ -148,7 +146,7 @@ function Singup() {
             <Row>
                 <SignupColumn>
                     {
-                        formType === 'signUp' && <Form {...{ inputs: inputConfig, buttons: buttonsConfig }} />
+                        formType === 'signUp' && <Form {...{ inputs: inputConfig, buttons: buttonsConfig }} onSubmit={signUp} />
                     }
                     {
                         formType === 'signIn' && <Form {...{ inputs: signInConfig, buttons: signInbuttonsConfig }} />
@@ -157,6 +155,7 @@ function Singup() {
                         formType === 'signedIn' && (
                             <div>
                                 <h1>Welcome to your account</h1>
+                                <h3>More coming soon...</h3>
                             </div>
                         )
                     }

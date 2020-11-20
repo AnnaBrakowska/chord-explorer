@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '../../globalStyles'
+import { ButtonStyles } from '../../globalStyles'
 
 export const FormContainer = styled.form`
     display: flex;
@@ -15,7 +15,8 @@ export const FormInput = styled.input`
     width: 100%;
 `;
 
-export const FormButton = styled(Button)`
+export const FormButton = styled.input`
+    ${ButtonStyles}
     background: ${({ background }) => background};
 `;
 

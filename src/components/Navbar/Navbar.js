@@ -19,7 +19,6 @@ function Navbar() {
     window.addEventListener('resize', showButton)
 
     const closeMobileMenu = () => {
-        console.log('Hello  ')
     }
 
     return (

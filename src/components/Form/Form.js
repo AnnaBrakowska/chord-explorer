@@ -12,7 +12,7 @@ function Form({ inputs, buttons }) {
                     pattern={el.pattern} />
             ))}
             <FormBottomContainer>
-                {buttons && (buttons.map(el => <FormButton onClick={(e) => el.switch ? el.handler(el.switch) : el.handler(e)} background={el.background} type={el.type}> {el.label}</FormButton>))}
+                {buttons && (buttons.map(el => <FormButton onClick={(e) => el.switch ? el.handler(el.switch) : el.handler(e)} background={el.background} type={el.type} value={el.label} />))}
             </FormBottomContainer>
         </FormContainer >
     )
