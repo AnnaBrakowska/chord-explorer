@@ -37,11 +37,10 @@ export const Button = styled.button`
 `
 
 export const Grid = styled.div`
-    max-width: 100%;
+    width: 100%;
     display: grid;
     grid-gap: 5%;
-    grid-template-rows:    repeat(4, 3fr);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     @media screen and (max-width: 768px) {
         display: flex;
@@ -58,13 +57,20 @@ export const Row = styled.div`
 export const Column = styled.div`
   display: flex;
   width: 100%;
-  margin: 0 24px;
+  margin: 0 50px;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   @media screen and (max-width: 768px) {
     display: flex;
     justify-content: space-between;
   }
+`;
+
+export const PageContainer = styled.div`
+  padding: 150px 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export default GlobalStyle

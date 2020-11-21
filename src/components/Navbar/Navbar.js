@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavLink, NavItem, NavItemBtn, NavBtnLink } from './Navbar.elements'
+import { Nav, NavColumn, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavLink, NavItem, NavItemBtn, NavBtnLink } from './Navbar.elements'
 import { FaTimes, FaBars } from 'react-icons/fa'
 import { Button, Column } from '../../globalStyles'
 
@@ -23,7 +23,7 @@ function Navbar() {
 
     return (
         <NavbarContainer>
-            <Column>
+            <NavColumn>
                 <NavLogo>Chords</NavLogo>
                 <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}
                 </MobileIcon>
@@ -48,7 +48,7 @@ function Navbar() {
                         }
                     </NavItemBtn>
                 </NavMenu>
-            </Column>
+            </NavColumn>
         </NavbarContainer>
     )
 }

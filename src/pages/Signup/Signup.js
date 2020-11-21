@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { signupConfig, signinConfig, signUpTitleConfig } from './Signup.config'
 import { Form, Error, Title, SuccessMessage } from '../../components'
-import { Row, Column } from '../../globalStyles'
-
-
+import { Row, Column, PageContainer } from '../../globalStyles'
+import createFormConfig from '../../utils/createFormConfig'
 import Amplify, { API } from 'aws-amplify';
 import config from '../../aws-exports'
 Amplify.configure(config)
-
-const SignupContainer = styled.div`
-  padding: 150px 50px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
-
-const SignupColumn = styled(Column)`
-    justify-content: center;
-`
 
 function Singup() {
     const [form, updateForm] = useState({
@@ -103,53 +92,31 @@ function Singup() {
     // }, [])
 
     const { formType } = form
-    const inputConfig = [
-        { name: "name", required: true, placeholder: "Name", handler: onChange, type: "text" },
-        { name: "email", required: true, placeholder: "Email", handler: onChange, type: "text", pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" },
-        { name: "password", required: true, placeholder: "Password", handler: onChange, type: "password" }]
 
-    const buttonsConfig = [
-        { label: "Sign Up", handler: signUp, background: 'lightblue', type: 'submit' },
-        { label: "Sign In", type: "button", handler: switchForm, background: 'orange', switch: 'signIn' }
-    ]
-
-    const signInConfig = [
-        { name: "email", required: true, placeholder: "Email", handler: onChange, type: "text" },
-        { name: "password", required: true, placeholder: "Password", handler: onChange, type: "password" }
-    ]
-
-    const signInbuttonsConfig = [
-        { label: "Sign In", type: "submit", handler: signIn, background: 'orange' },
-        { label: "Sign Up", type: "button", handler: switchForm, background: 'lightblue', switch: 'signUp' }
-    ]
-
-    const formTypeTitleConfig = {
-        signUp: 'Sign Up',
-        signIn: 'Sign In',
-        signedIn: 'Welcome'
-    }
+    const signUpConfig = createFormConfig(signupConfig.inputs, signupConfig.buttons, [onChange, onChange, onChange], [signUp, switchForm])
+    const signInConfig = createFormConfig(signinConfig.inputs, signinConfig.buttons, [onChange, onChange, onChange], [signIn, switchForm])
 
     return (
-        <SignupContainer>
+        <PageContainer>
             <Row>
-                <SignupColumn>
-                    <Title title={formTypeTitleConfig[formType]} />
-                </SignupColumn>
+                <Column>
+                    <Title title={signUpTitleConfig[formType]} />
+                </Column>
             </Row>
 
             <Row>
-                <SignupColumn>
+                <Column>
                     {errorMessage && <Error message={errorMessage} />}
                     {successMessage && <SuccessMessage message={successMessage} />}
-                </SignupColumn>
+                </Column>
             </Row>
             <Row>
-                <SignupColumn>
+                <Column>
                     {
-                        formType === 'signUp' && <Form {...{ inputs: inputConfig, buttons: buttonsConfig }} onSubmit={signUp} />
+                        formType === 'signUp' && <Form {...{ ...signUpConfig }} onSubmit={signUp} />
                     }
                     {
-                        formType === 'signIn' && <Form {...{ inputs: signInConfig, buttons: signInbuttonsConfig }} />
+                        formType === 'signIn' && <Form {...{ ...signInConfig }} onSubmit={signIn} />
                     }
                     {
                         formType === 'signedIn' && (
@@ -159,9 +126,9 @@ function Singup() {
                             </div>
                         )
                     }
-                </SignupColumn>
+                </Column>
             </Row>
-        </SignupContainer>
+        </PageContainer>
     )
 }
 

@@ -1,11 +1,14 @@
 import styled from 'styled-components'
-import { Row } from '../../globalStyles'
+import { Row, Column } from '../../globalStyles'
 import { Link } from 'react-router-dom'
 
 export const NavbarContainer = styled(Row)`
     height: 80px;
     width: 100%;
-    ${Row}
+`;
+
+export const NavColumn = styled(Column)`
+    justify-content: space-between;
 `;
 
 export const NavLogo = styled(Link)`

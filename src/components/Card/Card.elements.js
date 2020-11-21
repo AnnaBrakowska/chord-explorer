@@ -7,6 +7,11 @@ export const CardBody = styled.div`
     padding: 20px;
     border-left: 2px solid orange;
 
+    &:hover {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 18px;
+    }
+
     @media screen and (max-width: 768px) {
         width: 100%;
         margin-top: 10px;
