@@ -8,16 +8,21 @@ export const FormContainer = styled.form`
 `
 
 export const FormInput = styled.input`
-    border: 1px solid lightgray;
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 5px;
     width: 100%;
+    border: ${({ error }) => (error ? '1px solid red' : '1px solid lightgray')};
 `;
 
 export const FormButton = styled.input`
     ${ButtonStyles}
     background: ${({ background }) => background};
+
+    &:disabled {
+        background: lightGray;
+        cursor: no-drop;
+    }
 `;
 
 export const FormBottomContainer = styled.div`

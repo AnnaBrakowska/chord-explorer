@@ -4,7 +4,7 @@ const createConfig = (passedInputs, passedButtons, inputHandlers, buttonHandlers
         el.handler = inputHandlers[index]
         return el
     })
-    console.log("WTF", inputs)
+
     const buttons = passedButtons.map((el, index) => {
         el.handler = buttonHandlers[index]
         return el

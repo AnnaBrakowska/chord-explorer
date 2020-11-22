@@ -10,7 +10,7 @@ Amplify.configure(config)
 
 function Singup() {
     const [form, updateForm] = useState({
-        password: '', email: '', formType: 'signUp'
+        name: '', password: '', email: '', formType: 'signUp'
     })
 
     const [user, setUser] = useState(null)
@@ -31,7 +31,7 @@ function Singup() {
                 },
                 body: { user: form }
             }).then(res => {
-                if (res.user.user_id && !res.user.user_name) {
+                if (res.user.user_id && res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
                     setUser(res.user)
@@ -61,7 +61,7 @@ function Singup() {
                 },
                 body: { user: form }
             }).then(res => {
-                if (res.message === 'Logged in') {
+                if (res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
                     setUser(res.user)
