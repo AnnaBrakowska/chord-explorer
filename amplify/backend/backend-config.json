@@ -1,12 +1,5 @@
 {
-  "auth": {
-    "chordexplorer41e95509": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
+  "auth": {},
   "storage": {
     "chords": {
       "service": "DynamoDB",

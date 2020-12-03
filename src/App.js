@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import GlobalStyles from './globalStyles'
 import { Navbar } from './components'
 import Chords from './pages/Chords/Chords'
 import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
+import Account from './pages/Account/Account'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -16,15 +17,34 @@ const AppContainer = styled.div`
 `
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  useEffect(() => {
+    fetch("http://localhost:3000/auth/signin", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    }).then((response) => {
+      return response.json()
+    }).then(response => {
+      if (response.status === 200) {
+        setLoggedIn(response.loggedIn)
+      }
+    })
+  }, [])
+
   return (
     <AppContainer>
       <Router>
         <GlobalStyles />
-        <Navbar />
+        <Navbar loggedIn={loggedIn} />
 
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/chords" component={Chords}></Route>
+          <Route path="/account" component={Account}></Route>
           <Route path="/sign-up" component={Signup}></Route>
         </Switch>
       </Router>

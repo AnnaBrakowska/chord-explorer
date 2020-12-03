@@ -21,7 +21,8 @@
             "lambdaFunction": "auth",
             "privacy": {
                 "open": true
-            }
+            },
+            "policyResourceName": "/authorize"
         },
         {
             "name": "/saveChords",
@@ -87,5 +88,5 @@
             ]
         }
     ],
-    "uuid": "8570764e"
+    "uuid": "25c6776a"
 }

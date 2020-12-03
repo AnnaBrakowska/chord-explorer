@@ -14,8 +14,9 @@ export const signinConfig = {
         { name: "email", required: true, placeholder: "Email", type: "text" },
         { name: "password", required: true, placeholder: "Password", type: "password" }
     ],
-    buttons: [{ label: "Sign In", type: "submit", background: 'orange' },
-    { label: "Sign Up", type: "button", background: 'lightblue', switch: 'signUp' }]
+    buttons: [
+        { label: "Sign In", type: "submit", background: 'orange' },
+        { label: "Sign Up", type: "button", background: 'lightblue', switch: 'signUp' }]
 }
 
 export const signUpTitleConfig = {

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { signupConfig, signinConfig, signUpTitleConfig } from './Signup.config'
 import { Form, Error, Title, SuccessMessage } from '../../components'
 import { Row, Column, PageContainer } from '../../globalStyles'
 import createFormConfig from '../../utils/createFormConfig'
 import Amplify, { API } from 'aws-amplify';
 import config from '../../aws-exports'
+import { Redirect } from 'react-router'
 Amplify.configure(config)
 
 function Singup() {
@@ -23,13 +23,16 @@ function Singup() {
     }
 
     const signUp = (e) => {
+        console.log("SIGN UP")
         if (form.password && form.email && form.name) {
             e.preventDefault()
-            API.post('chordexplorer', '/authorize/signup', {
+            fetch("http://localhost:3000/auth/signup", {
+                // API.post('chordexplorer', '/authorize/signup', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: { user: form }
+                body: JSON.stringify({ user: form })
             }).then(res => {
                 if (res.user.user_id && res.status === 200) {
                     setSuccessMessage(res.message)
@@ -53,14 +56,21 @@ function Singup() {
 
 
     const signIn = (e) => {
-        if (form.password && form.email && form.name) {
+        console.log("sign in")
+        console.log(form)
+        if (form.password && form.email) {
             e.preventDefault()
-            API.post('chordexplorer', '/authorize/signin', {
+            console.log("INSIDE")
+            // API.post('chordexplorer', '/authorize/signin', {
+            fetch("http://localhost:3000/auth/signin", {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: { user: form }
+                credentials: 'include',
+                body: JSON.stringify({ user: form })
             }).then(res => {
+                console.log("SINGING IN: ", res)
                 if (res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
@@ -77,19 +87,24 @@ function Singup() {
         }
     }
 
-    // const checkUser = async () => {
-    //     try {
-    //         updateUser(user)
-    //         updateForm(() => ({ ...form, formType: 'signedIn' }))
-    //     } catch (err) {
-
-    //     }
-    // }
-
-
-    // useEffect(() => {
-    //     checkUser()
-    // }, [])
+    useEffect(() => {
+        fetch("http://localhost:3000/auth/signin", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        }).then((response) => {
+            return response.json()
+        }).then(response => {
+            if (response.status === 200) {
+                setUser(response.user)
+                updateForm(() => ({ ...form, formType: 'signedIn' }))
+            } else {
+                updateForm(() => ({ ...form, formType: 'signUp' }))
+            }
+        })
+    }, [])
 
     const { formType } = form
 
@@ -120,10 +135,7 @@ function Singup() {
                     }
                     {
                         formType === 'signedIn' && (
-                            <div>
-                                <h1>Welcome to your account</h1>
-                                <h3>More coming soon...</h3>
-                            </div>
+                            <Redirect to="/account" />
                         )
                     }
                 </Column>

@@ -15,6 +15,10 @@ export const FormInput = styled.input`
     border: ${({ error }) => (error ? '1px solid red' : '1px solid lightgray')};
 `;
 
+export const FormError = styled.p`
+    color: red;
+`
+
 export const FormButton = styled.input`
     ${ButtonStyles}
     background: ${({ background }) => background};
@@ -26,5 +30,17 @@ export const FormButton = styled.input`
 `;
 
 export const FormBottomContainer = styled.div`
-display: flex;
+    display: flex;
+`
+
+export const FormSocialLink = styled.a`
+    ${ButtonStyles}
+    background: ${({ type }) => (type === 'facebook' && 'blue')};
+    background: ${({ type }) => (type === 'google' && 'red')};
+    background: ${({ type }) => (type === 'linkedin' && 'lightblue')};
+`
+
+export const FormSocialContainer = styled.div`
+    display: flex;
+    justify-content: space-around;
 `
