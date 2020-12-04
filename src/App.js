@@ -6,8 +6,10 @@ import Chords from './pages/Chords/Chords'
 import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
 import Account from './pages/Account/Account'
-
+import Amplify, { API } from 'aws-amplify';
+import config from '../../aws-exports'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+Amplify.configure(config)
 
 const AppContainer = styled.div`
   display: flex;
@@ -20,7 +22,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
-    fetch("http://localhost:3000/auth/signin", {
+    // fetch("http://localhost:3000/auth/signin", {
+      API.post('chordexplorer', '/authorize/signin', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
