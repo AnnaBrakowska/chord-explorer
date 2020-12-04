@@ -2,7 +2,7 @@
 const { validateUser } = require('../utils.js')
 const express = require('express')
 const router = express.Router()
-const connection = require('../connection.js')
+const connection = require('../connection')
 const bcrypt = require('bcryptjs')
 const { v4: uuidv4 } = require('uuid')
 

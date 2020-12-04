@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     // fetch("http://localhost:3000/auth/signin", {
-    API.post('chordexplorer', '/authorize/signin', {
+    fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

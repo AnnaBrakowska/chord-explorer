@@ -13,12 +13,18 @@ const app = express()
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(bodyParser.json())
 
-app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    methods: ["GET, POST"],
-    credentials: true
+// app.use(cors({
+//     origin: process.env.CORS,
+//     methods: ["GET, POST"],
+//     credentials: true
+// }))
 
-}))
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header('Access-Control-Allow-Credentials', true)
+    next()
+})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
