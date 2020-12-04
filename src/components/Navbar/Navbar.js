@@ -48,11 +48,14 @@ function Navbar({ loggedIn }) {
                     <NavItem>
                         <NavLink to="/chords">Chords</NavLink>
                     </NavItem>
-                    {
+                    {/* {
                         loggedIn && (<NavItem>
                             <NavLink to="/account">Account</NavLink>
                         </NavItem>)
-                    }
+                    } */}
+                    <NavItem>
+                        <NavLink to="/account">Account</NavLink>
+                    </NavItem>
 
                     {loggedIn ? (
                         <NavItemBtn>
