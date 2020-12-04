@@ -2,7 +2,6 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const passport = require('passport')
 const session = require('express-session')
 
@@ -13,16 +12,11 @@ const app = express()
 app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(bodyParser.json())
 
-// app.use(cors({
-//     origin: process.env.CORS,
-//     methods: ["GET, POST"],
-//     credentials: true
-// }))
-
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")
+    console.log('REQUEST', req)
+    res.header('Access-Control-Allow-Origin', 'https://main.dl8te1ylj497b.amplifyapp.com')
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Credentials', "true")
     next()
 })
 

@@ -26,7 +26,7 @@ function Singup() {
         console.log("SIGN UP")
         if (form.password && form.email && form.name) {
             e.preventDefault()
-            fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
+            fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,6 +67,7 @@ function Singup() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 credentials: 'include',
                 body: JSON.stringify({ user: form })
@@ -83,7 +84,6 @@ function Singup() {
                     setErrorMessage(res.message)
                     setSuccessMessage('')
                 }
-
             }).catch((err) => {
                 setErrorMessage('Something went wrong')
                 setSuccessMessage('')
@@ -92,8 +92,7 @@ function Singup() {
     }
 
     useEffect(() => {
-        // API.post('chordexplorer', '/authorize/signin', {
-        fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
+        fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
