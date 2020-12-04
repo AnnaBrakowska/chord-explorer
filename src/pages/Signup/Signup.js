@@ -27,13 +27,15 @@ function Singup() {
         if (form.password && form.email && form.name) {
             e.preventDefault()
             fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
-                // API.post('chordexplorer', '/authorize/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ user: form })
             }).then(res => {
+                return res.json()
+            }).then(res => {
+                console.log(res)
                 if (res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
