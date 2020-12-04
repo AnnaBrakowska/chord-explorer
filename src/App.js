@@ -7,7 +7,7 @@ import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
 import Account from './pages/Account/Account'
 import Amplify, { API } from 'aws-amplify';
-import config from '../../aws-exports'
+import config from './aws-exports'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 Amplify.configure(config)
 
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     // fetch("http://localhost:3000/auth/signin", {
-      API.post('chordexplorer', '/authorize/signin', {
+    API.post('chordexplorer', '/authorize/signin', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
