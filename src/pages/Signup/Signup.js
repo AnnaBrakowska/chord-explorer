@@ -63,14 +63,15 @@ function Singup() {
         if (form.password && form.email) {
             e.preventDefault()
             console.log("INSIDE")
-            fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-                // fetch("http://localhost:3000/auth/signin", {
+            fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
                 body: JSON.stringify({ user: form })
+            }).then(res => {
+                return res.json()
             }).then(res => {
                 console.log("SINGING IN: ", res)
                 if (res.status === 200) {
@@ -82,6 +83,7 @@ function Singup() {
                     setErrorMessage(res.message)
                     setSuccessMessage('')
                 }
+
             }).catch((err) => {
                 setErrorMessage('Something went wrong')
                 setSuccessMessage('')
