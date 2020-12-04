@@ -90,25 +90,6 @@ function Singup() {
         }
     }
 
-    useEffect(() => {
-        fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        }).then((response) => {
-            return response.json()
-        }).then(response => {
-            if (response.status === 200) {
-                setUser(response.user)
-                updateForm(() => ({ ...form, formType: 'signedIn' }))
-            } else {
-                updateForm(() => ({ ...form, formType: 'signUp' }))
-            }
-        })
-    }, [])
-
     const { formType } = form
 
     const signUpConfig = createFormConfig(signupConfig.inputs, signupConfig.buttons, [onChange, onChange, onChange], [signUp, switchForm])

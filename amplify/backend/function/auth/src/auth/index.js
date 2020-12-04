@@ -86,6 +86,7 @@ router.post('/signin', (req, res) => {
                     if (user_email === user.email && result) {
                         // Setting session and cookie
                         req.session.userId = uuidv4()
+                        console.log("DROPPED A COOKIE", req.session.userId)
                         connection.query(`INSERT INTO sessions (session_id, user_email) VALUES('${req.session.userId}', '${user.email}')`)
                         res.status(200).json({ status: 200, loggedIn: true, user: results.rows[0] })
                     } else {

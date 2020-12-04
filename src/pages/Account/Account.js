@@ -9,25 +9,25 @@ Amplify.configure(config)
 function Account() {
     const [user, setUser] = useState('')
     const [redirect, setRedirect] = useState(false)
-    useEffect(() => {
-        fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        }).then((response) => {
-            return response.json()
-        }).then(response => {
-            if (response.status === 200) {
-                console.log("RESPONSE: ", response)
-                setUser({ ...response.user })
-                console.log("USER: ", user)
-            } else {
-                setRedirect(!response.loggedIn)
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         credentials: 'include',
+    //     }).then((response) => {
+    //         return response.json()
+    //     }).then(response => {
+    //         if (response.status === 200) {
+    //             console.log("RESPONSE: ", response)
+    //             setUser({ ...response.user })
+    //             console.log("USER: ", user)
+    //         } else {
+    //             setRedirect(!response.loggedIn)
+    //         }
+    //     })
+    // }, [])
 
     return (
         <PageContainer>

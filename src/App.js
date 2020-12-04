@@ -22,6 +22,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
+    console.log('APP JS')
     // fetch("http://localhost:3000/auth/signin", {
     fetch(" https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
       method: 'GET',
