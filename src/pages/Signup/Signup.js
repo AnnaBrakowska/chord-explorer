@@ -34,7 +34,7 @@ function Singup() {
                 },
                 body: JSON.stringify({ user: form })
             }).then(res => {
-                if (res.user.user_id && res.status === 200) {
+                if (res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
                     setUser(res.user)

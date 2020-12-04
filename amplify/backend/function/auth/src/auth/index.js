@@ -28,10 +28,10 @@ router.post('/signup', (req, res) => {
         // CHECK IF USER EXISTS
         connection.query(`SELECT * FROM Users WHERE user_email='${user.email}';`, (error, results) => {
             if (error) {
-                res.status(400).json({ status: 400, message: 'Invalid user. User already exists' })
+                res.status(400).json({ status: 400, message: 'Something went wrong' })
             }
             if (results.rows[0]) {
-                res.json({ user: results.rows[0], message: 'Invalid user. User already exists' })
+                res.json({ status: 400, message: 'Invalid user. User already exists' })
             } else {
                 // IF USER DOESN'T EXIST HASH THE PASSWORD AND SAVE USER TO DB
                 bcrypt.hash(user.password, 10).then((hash) => {
