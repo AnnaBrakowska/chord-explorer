@@ -66,8 +66,7 @@ function Singup() {
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Content-Type': 'application/json'
                 },
                 credentials: 'include',
                 body: JSON.stringify({ user: form })
