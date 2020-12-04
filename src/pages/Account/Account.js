@@ -37,7 +37,7 @@ function Account() {
                     {user.user_name && (<Title title={`Welcome to your account ${user.user_name}!`} />)}
                 </Column>
             </Row>
-            {redirect && <Redirect to="/" />}
+            {/* {redirect && <Redirect to="/" />} */}
         </PageContainer>
     )
 }

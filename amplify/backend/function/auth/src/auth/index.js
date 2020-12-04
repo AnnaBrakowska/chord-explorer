@@ -22,7 +22,6 @@ router.get('/signout', (req, res) => {
 
 // SIGNUP
 router.post('/signup', (req, res) => {
-    console.log("REDIRECTED", req)
     const { user } = req.body
     if (validateUser(user)) {
         // CHECK IF USER EXISTS
@@ -51,6 +50,8 @@ router.post('/signup', (req, res) => {
 
 // CHECK IF SIGNED IN
 router.get("/signin", (req, res) => {
+    console.log("REQUEST=>>>>>>>", req)
+    console.log("REQUEST SESSION", req.session)
     if (req.session.userId) {
         connection.query(`SELECT * FROM users
         INNER JOIN sessions
