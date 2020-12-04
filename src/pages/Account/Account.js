@@ -10,6 +10,7 @@ function Account() {
     const [user, setUser] = useState('')
     const [redirect, setRedirect] = useState(false)
     useEffect(() => {
+        console.log("FETCHING ACCOUNT DATA")
         fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
             method: 'GET',
             headers: {
