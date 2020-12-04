@@ -5,6 +5,10 @@ export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     width: 70%;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 `
 
 export const FormInput = styled.input`
