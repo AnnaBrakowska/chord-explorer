@@ -74,6 +74,7 @@ router.get("/signin", (req, res) => {
 // SIGN IN
 router.post('/signin', (req, res) => {
     const { user } = req.body
+    console.log("USER DATA: ", req.body)
     if (validateUser(user)) {
         connection.query(`SELECT * FROM Users WHERE user_email='${user.email}';`, (error, results) => {
             if (error) {

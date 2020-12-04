@@ -131,10 +131,10 @@ function Singup() {
             <Row>
                 <Column>
                     {
-                        formType === 'signUp' && <Form {...{ ...signUpConfig }} onSubmit={signUp} />
+                        formType === 'signUp' && <Form {...{ ...signUpConfig }} />
                     }
                     {
-                        formType === 'signIn' && <Form {...{ ...signInConfig }} onSubmit={signIn} />
+                        formType === 'signIn' && <Form {...{ ...signInConfig }} />
                     }
                     {
                         formType === 'signedIn' && (
