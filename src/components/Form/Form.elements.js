@@ -39,9 +39,14 @@ export const FormBottomContainer = styled.div`
 
 export const FormSocialLink = styled.a`
     ${ButtonStyles}
+    text-align: center;
     background: ${({ type }) => (type === 'facebook' && 'blue')};
     background: ${({ type }) => (type === 'google' && 'red')};
     background: ${({ type }) => (type === 'linkedin' && 'lightblue')};
+
+    &:hover {
+        opacity: .8;
+    }
 `
 
 export const FormSocialContainer = styled.div`

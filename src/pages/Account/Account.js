@@ -10,8 +10,7 @@ function Account() {
     const [user, setUser] = useState('')
     const [redirect, setRedirect] = useState(false)
     useEffect(() => {
-        // fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-        API.post('chordexplorer', '/authorize/signin', {
+        fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +36,7 @@ function Account() {
                     {user.user_name && (<Title title={`Welcome to your account ${user.user_name}!`} />)}
                 </Column>
             </Row>
-            {redirect && <Redirect to="/sign-up" />}
+            {redirect && <Redirect to="/" />}
         </PageContainer>
     )
 }
