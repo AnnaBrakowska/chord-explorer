@@ -8,7 +8,7 @@ import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup'
 import Account from './pages/Account/Account'
 import Amplify from 'aws-amplify'
-import UserProvider from "./contexts/UserProvider"
+import UserProvider from "./context/UserProvider"
 import config from './aws-exports'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 Amplify.configure(config)
