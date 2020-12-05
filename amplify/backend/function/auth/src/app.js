@@ -13,9 +13,9 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
-    console.log('REQUEST', req)
-    res.header('Access-Control-Allow-Origin', 'https://main.dl8te1ylj497b.amplifyapp.com')
-    res.header('Access-Control-Allow-Credentials', "true")
+    console.log('APP USE REQUEST HEADERS', req)
+    res.header("Access-Control-Allow-Origin", "https://main.dl8te1ylj497b.amplifyapp.com")
+    res.header("Access-Control-Allow-Credentials", "true")
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
     res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Origin, X-Requested-With, Content-Type, Accept, Authorization")
 
@@ -30,10 +30,12 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
-        secure: true,
-        expires: 60 * 60 * 24,
-        httpOnly: true
+        maxAge: 60 * 60 * 24 * 1000,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true
     }
 }))
 

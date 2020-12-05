@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-chordexplorer-dev-134207-deployment",
-          "S3Key": "amplify-builds/auth-39634b634f642b6b5265-build.zip"
+          "S3Key": "amplify-builds/auth-6447596c394c73727358-build.zip"
         }
       }
     },
