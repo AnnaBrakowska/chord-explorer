@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Row, Column, PageContainer } from '../../globalStyles'
 import { Title } from '../../components'
-import UserProvider from "../context/UserProvider";
+import UserProvider from "../../context/UserProvider";
 
 
 function Account() {
