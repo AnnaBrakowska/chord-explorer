@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 const context = createContext(null);
 
 const UserProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({})
 
     useEffect(() => {
         fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {

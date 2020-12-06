@@ -11,6 +11,7 @@ function Account() {
         <PageContainer>
             <Row>
                 <Column>
+                    USER: {user}
                     {user.user_name ?
                         (<Title title={`Welcome to your account ${user.user_name}!`} />)
                         :
