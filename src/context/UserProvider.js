@@ -95,7 +95,7 @@ const UserProvider = ({ children }) => {
             credentials: 'include',
         })
             .then(res => res.json())
-            .then(res => setUser(res))
+            .then(res => setUser(res.user))
             .catch(err => {
                 console.log(err);
             })
