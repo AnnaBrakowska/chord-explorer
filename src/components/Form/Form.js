@@ -6,9 +6,10 @@ function Form({ inputs, buttons }) {
 
     const handleValidation = (e) => {
         e.persist()
-        if (e.currentTarget.value) {
-            let err = validateData(e.currentTarget.type, e.currentTarget.value)
-            setErrors(() => ({ ...errors, [e.currentTarget.type]: err }))
+        const target = e.currentTarget || e.target
+        if (target.value) {
+            let err = validateData(target.type, target.value)
+            setErrors(() => ({ ...errors, [target.type]: err }))
         }
     }
 

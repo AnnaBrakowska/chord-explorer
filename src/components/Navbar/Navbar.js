@@ -23,6 +23,7 @@ function Navbar({ loggedIn }) {
 
     const signOut = () => {
         fetch('https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signout', {
+            // fetch("http://localhost:3000/auth/signout", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
