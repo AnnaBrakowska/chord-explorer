@@ -36,6 +36,16 @@ export const Button = styled.button`
   ${ButtonStyles}
 `
 
+export const Link = styled.button`
+  appearance: none;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+`
+
 export const Grid = styled.div`
     width: 100%;
     display: grid;
@@ -60,10 +70,6 @@ export const Column = styled.div`
   margin: 0 50px;
   width: 100%;
   justify-content: center;
-  @media screen and (max-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 export const PageContainer = styled.div`

@@ -105,8 +105,7 @@ const UserProvider = ({ children }) => {
                 setSuccessMessage('')
             }
         }).catch((err) => {
-            setErrorMessage('Something went wrong')
-            setSuccessMessage('')
+            console.log("Error: ", err)
         })
     }, [])
 

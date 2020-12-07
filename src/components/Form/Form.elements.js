@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { ButtonStyles } from '../../globalStyles'
 
+const googleStyles = `
+    background: blue;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 15px;
+`
+
 export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
@@ -35,18 +43,25 @@ export const FormButton = styled.input`
 
 export const FormBottomContainer = styled.div`
     display: flex;
+    justify-content: center;
 `
 
 export const FormSocialLink = styled.a`
     ${ButtonStyles}
     text-align: center;
-    background: ${({ type }) => (type === 'facebook' && 'blue')};
-    background: ${({ type }) => (type === 'google' && 'red')};
-    background: ${({ type }) => (type === 'linkedin' && 'lightblue')};
+    text-decoration: none;
+    background: ${({ type }) => (type === 'google' && 'blue')};
 
     &:hover {
         opacity: .8;
     }
+`
+
+export const FormSocialIcon = styled.img`
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 15px;
 `
 
 export const FormSocialContainer = styled.div`
