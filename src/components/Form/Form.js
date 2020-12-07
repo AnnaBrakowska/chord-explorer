@@ -39,8 +39,8 @@ function Form({ inputs, buttons }) {
                     />))}
             </FormBottomContainer>
             <FormSocialContainer>
-                <FormSocialLink type='google' href="https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/social/google">Continue with Google</FormSocialLink>
-                {/* <FormSocialLink type='google' href="http://localhost:3000/social/google">Continue with Google</FormSocialLink> */}
+                {/* <FormSocialLink type='google' href="https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/social/google">Continue with Google</FormSocialLink> */}
+                <FormSocialLink type='google' href="http://localhost:3000/social/google">Continue with Google</FormSocialLink>
             </FormSocialContainer>
 
         </FormContainer >

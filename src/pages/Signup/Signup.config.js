@@ -4,7 +4,7 @@ export const signupConfig = {
         { name: "email", required: true, placeholder: "Email", type: "email", pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" },
         { name: "password", required: true, placeholder: "Password", type: "password" }],
     buttons: [
-        { label: "Sign Up", background: 'lightblue', type: 'submit' },
+        { label: "Sign Up with Email", background: 'lightblue', type: 'submit' },
         { label: "Sign In", type: "button", background: 'orange', switch: 'signIn' }
     ]
 }

@@ -93,12 +93,21 @@ const UserProvider = ({ children }) => {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
+        }).then(res => {
+            console.log("SINGING IN: ", res)
+            if (res.status === 200) {
+                setSuccessMessage(res.message)
+                setErrorMessage('')
+                setUser(res.user)
+                updateForm(() => ({ ...form, formType: 'signedIn' }))
+            } else {
+                setErrorMessage(res.message)
+                setSuccessMessage('')
+            }
+        }).catch((err) => {
+            setErrorMessage('Something went wrong')
+            setSuccessMessage('')
         })
-            .then(res => res.json())
-            .then(res => setUser(res.user))
-            .catch(err => {
-                console.log(err);
-            })
     }, [])
 
     return (
