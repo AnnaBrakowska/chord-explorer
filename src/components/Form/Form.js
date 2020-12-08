@@ -42,9 +42,10 @@ function Form({ inputs, buttons }) {
                 <Column><div>- or -</div></Column>
             </Row>
             <FormSocialContainer>
-                <FormSocialLink type='google' href="https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/social/google">Continue with Google</FormSocialLink>
+                <FormSocialLink type='google' href="https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/social/google">
+                <FormSocialIcon src={require("../../assets/google.svg")} alt="Google logo" />
+                    Continue with Google</FormSocialLink>
                 {/* <FormSocialLink type='google' href="http://localhost:3000/social/google"> */}
-                    <FormSocialIcon src={require("../../assets/google.svg")} alt="Google logo">Continue with Google</FormSocialIcon>
             </FormSocialContainer>
             <p>
                 {buttons[2].linkText}
