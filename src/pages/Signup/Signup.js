@@ -10,7 +10,7 @@ import UserProvider from "../../context/UserProvider"
 function Singup() {
     const context = useContext(UserProvider.context)
     const { form, onChange, signIn, signUp, switchForm, errorMessage, successMessage, user } = context
-    console.log("SIGN UP METHOD", signUp)
+    console.log("USER", user)
     const { formType } = form
 
     const signUpConfig = createFormConfig(signupConfig.inputs, signupConfig.buttons, [onChange, onChange, onChange], [signUp, switchForm])
@@ -39,9 +39,8 @@ function Singup() {
                         formType === 'signIn' && <Form {...{ ...signInConfig }} />
                     }
                     {
-                        user && user.user_name(
-                            <Redirect to="/account" />
-                        )
+                        user && user.user_name && <Redirect to="/account" />
+
                     }
                 </Column>
             </Row>

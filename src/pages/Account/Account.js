@@ -6,7 +6,6 @@ import UserProvider from "../../context/UserProvider";
 
 function Account() {
     const context = useContext(UserProvider.context)
-    console.log("CONTEXT: ", context)
     return (
         <PageContainer>
             <Row>

@@ -26,7 +26,7 @@ const UserProvider = ({ children }) => {
             e.preventDefault()
             console.log("INSIDE")
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-                // fetch("http://localhost:3000/auth/signin", {
+                //fetch("http://localhost:3000/auth/signin", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -38,6 +38,7 @@ const UserProvider = ({ children }) => {
             }).then(res => {
                 console.log("SINGING IN: ", res)
                 if (res.status === 200) {
+                    console.log("THIS SHOULD BE THE USER: ", res.user)
                     setSuccessMessage(res.message)
                     setErrorMessage('')
                     setUser(res.user)
@@ -58,7 +59,7 @@ const UserProvider = ({ children }) => {
         if (form.password && form.email && form.name) {
             e.preventDefault()
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
-                // fetch("http://localhost:3000/auth/signup", {
+                //fetch("http://localhost:3000/auth/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,12 +88,14 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         console.log("USER PROVIDER")
         fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
-            // fetch("http://localhost:3000/auth/signin", {
+            //fetch("http://localhost:3000/auth/signin", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
+        }).then(res => {
+            return res.json()
         }).then(res => {
             console.log("SINGING IN: ", res)
             if (res.status === 200) {
