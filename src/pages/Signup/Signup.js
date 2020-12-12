@@ -10,6 +10,7 @@ import UserProvider from "../../context/UserProvider"
 function Singup() {
     const context = useContext(UserProvider.context)
     const { form, onChange, signIn, signUp, switchForm, errorMessage, successMessage } = context
+    console.log("SIGN UP METHOD", signUp)
     const { formType } = form
 
     const signUpConfig = createFormConfig(signupConfig.inputs, signupConfig.buttons, [onChange, onChange, onChange], [signUp, switchForm])

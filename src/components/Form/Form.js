@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FormContainer, FormInput, FormButton, FormBottomContainer, FormSocialContainer, FormSocialLink, FormSocialIcon, FormError } from './Form.elements';
+import { FormContainer, FormInput, FormButton, FormBottomContainer, FormSocialContainer, FormSocialLink, FormSocialIcon, FormError, FormSeparator } from './Form.elements';
 import validateData from '../../utils/validateData'
 import { Row, Column, Link } from '../../globalStyles'
 function Form({ inputs, buttons }) {
@@ -32,18 +32,18 @@ function Form({ inputs, buttons }) {
             ))}
             <FormBottomContainer>
                 <FormButton
-                    onClick={(e) => buttons[1].handler(e)}
+                    onClick={(e) => buttons[0].handler(e)}
                     disabled={Object.values(errors).filter(el => !!el !== false).length}
                     key='button-0'
                     background={buttons[0].background} type={buttons[0].type} value={buttons[0].label}
                 />
             </FormBottomContainer>
             <Row>
-                <Column><div>- or -</div></Column>
+                <Column><FormSeparator>- or -</FormSeparator></Column>
             </Row>
             <FormSocialContainer>
                 <FormSocialLink type='google' href="https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/social/google">
-                <FormSocialIcon src={require("../../assets/google.svg")} alt="Google logo" />
+                    <FormSocialIcon src={require("../../assets/google.svg")} alt="Google logo" />
                     Continue with Google</FormSocialLink>
                 {/* <FormSocialLink type='google' href="http://localhost:3000/social/google"> */}
             </FormSocialContainer>

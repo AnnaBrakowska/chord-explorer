@@ -8,7 +8,7 @@ const validateData = (type, value) => {
     }
 
     if (type === 'email') {
-        const pattern = /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g
+        const pattern = /[a-zA-Z0-9]+[.]?([a-zA-Z0-9]+)?[@][a-z]{3,9}[.][a-z]{2,5}/g
         const result = pattern.test(value)
         const error = 'Invalid email'
         return !result && error

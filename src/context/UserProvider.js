@@ -58,7 +58,7 @@ const UserProvider = ({ children }) => {
         if (form.password && form.email && form.name) {
             e.preventDefault()
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
-                // fetch("http://localhost:3000/auth/signup", {
+                //fetch("http://localhost:3000/auth/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

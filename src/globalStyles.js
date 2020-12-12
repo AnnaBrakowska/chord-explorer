@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
 export const ButtonStyles = css`
   border-radius: 4px;
   background: darkorange;
+  margin-bottom: 10px;
   white-space: no-wrap;
   font-weight: 300;
   padding: ${({ big }) => big ? '12px 64px' : '10px 20px'};

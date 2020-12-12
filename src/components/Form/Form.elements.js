@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import { ButtonStyles } from '../../globalStyles'
 
-const googleStyles = `
-    background: blue;
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin-right: 15px;
-`
-
 export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
@@ -34,6 +26,8 @@ export const FormError = styled.p`
 export const FormButton = styled.input`
     ${ButtonStyles}
     background: ${({ background }) => background};
+    width: 50%;
+    height: 44px;
 
     &:disabled {
         background: lightGray;
@@ -49,6 +43,8 @@ export const FormBottomContainer = styled.div`
 export const FormSocialLink = styled.a`
     ${ButtonStyles}
     text-align: center;
+    margin-bottom: 10px;
+    width: 50%;
     text-decoration: none;
     background: ${({ type }) => (type === 'google' && 'blue')};
 
@@ -67,4 +63,8 @@ export const FormSocialIcon = styled.img`
 export const FormSocialContainer = styled.div`
     display: flex;
     justify-content: space-around;
+`
+
+export const FormSeparator = styled.div`
+    margin-bottom: 10px;
 `
