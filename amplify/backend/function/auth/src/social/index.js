@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
             if (error) throw error
 
             if (results.rows[0]) {
-                console.log("FOUND USER=>>>>>", results.rows[0])
+                console.log("FOUND USER=>>>>>=>>>>>>", results.rows[0])
                 request.session.userId = uuidv4()
                 connection.query(`INSERT INTO sessions (session_id, user_email) VALUES('${request.session.userId}', '${results.rows[0].user_email}')`)
                 return done(error, results.rows[0])
@@ -52,8 +52,8 @@ router.get('/google',
 
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: 'https://main.dl8te1ylj497b.amplifyapp.com',
-        failureRedirect: 'https://main.dl8te1ylj497b.amplifyapp.com'
+        successRedirect: 'https://main.dl8te1ylj497b.amplifyapp.com/account',
+        failureRedirect: 'https://main.dl8te1ylj497b.amplifyapp.com/sign-up'
     })
 )
 

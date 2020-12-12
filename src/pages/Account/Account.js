@@ -11,7 +11,7 @@ function Account() {
         <PageContainer>
             <Row>
                 <Column>
-                    {context.user.user_name ?
+                    {context.user && context.user.user_name ?
                         (<Title title={`Welcome to your account ${context.user.user_name}!`} />)
                         :
                         <div>
