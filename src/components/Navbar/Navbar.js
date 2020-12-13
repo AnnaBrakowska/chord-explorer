@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { NavColumn, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavLink, NavItem, NavItemBtn, NavBtnLink } from './Navbar.elements'
 import { FaTimes, FaBars } from 'react-icons/fa'
 import { Button } from '../../globalStyles'
+import UserProvider from "../../context/UserProvider"
 
-function Navbar({ loggedIn }) {
+function Navbar() {
+    const context = useContext(UserProvider.context)
+    const { user, signOut } = context
     const [click, setClick] = useState(false)
     const [button, setButton] = useState(true)
 
@@ -19,21 +22,6 @@ function Navbar({ loggedIn }) {
     window.addEventListener('resize', showButton)
 
     const closeMobileMenu = () => {
-    }
-
-    const signOut = () => {
-        fetch('https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signout', {
-            // fetch("http://localhost:3000/auth/signout", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        }).then(response => {
-            return response.json()
-        }).then(response => {
-            console.log("SIGN OUT RESPONSE: ", response)
-        })
     }
 
     return (
@@ -54,7 +42,7 @@ function Navbar({ loggedIn }) {
                         <NavLink to="/account">Account</NavLink>
                     </NavItem>
 
-                    {loggedIn ? (
+                    {user && user.user_name ? (
                         <NavItemBtn>
                             {button ? (
 

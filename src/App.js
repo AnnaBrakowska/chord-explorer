@@ -24,21 +24,23 @@ function App() {
 
   return (
     <Router history={history}>
-      <AppContainer>
-        <Router>
-          <GlobalStyles />
-          <Navbar />
+      <UserProvider>
+        <AppContainer>
+          <Router>
+            <GlobalStyles />
+            <Navbar />
 
-          <Switch>
-            <Route path="/" exact component={Home}></Route>
-            <Route path="/chords" component={Chords}></Route>
-            <UserProvider>
+            <Switch>
+              <Route path="/" exact component={Home}></Route>
+              <Route path="/chords" component={Chords}></Route>
+
               <Route path="/account" component={Account}></Route>
               <Route path="/sign-up" component={Signup}></Route>
-            </UserProvider>
-          </Switch>
-        </Router>
-      </AppContainer>
+
+            </Switch>
+          </Router>
+        </AppContainer>
+      </UserProvider>
     </Router>
   );
 }

@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 const context = createContext(null);
 
 const UserProvider = ({ children }) => {
+    const [loading, setLoading] = useState(false)
     const [user, setUser] = useState({})
     const [errorMessage, setErrorMessage] = useState(null)
     const [successMessage, setSuccessMessage] = useState(null)
@@ -20,11 +21,8 @@ const UserProvider = ({ children }) => {
     }
 
     const signIn = (e) => {
-        console.log("sign in")
-        console.log(form)
         if (form.password && form.email) {
             e.preventDefault()
-            console.log("INSIDE")
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
                 //fetch("http://localhost:3000/auth/signin", {
                 method: 'POST',
@@ -36,9 +34,7 @@ const UserProvider = ({ children }) => {
             }).then(res => {
                 return res.json()
             }).then(res => {
-                console.log("SINGING IN: ", res)
                 if (res.status === 200) {
-                    console.log("THIS SHOULD BE THE USER: ", res.user)
                     setSuccessMessage(res.message)
                     setErrorMessage('')
                     setUser(res.user)
@@ -55,7 +51,6 @@ const UserProvider = ({ children }) => {
     }
 
     const signUp = (e) => {
-        console.log("SIGN UP")
         if (form.password && form.email && form.name) {
             e.preventDefault()
             fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signup", {
@@ -68,7 +63,6 @@ const UserProvider = ({ children }) => {
             }).then(res => {
                 return res.json()
             }).then(res => {
-                console.log(res)
                 if (res.status === 200) {
                     setSuccessMessage(res.message)
                     setErrorMessage('')
@@ -85,8 +79,23 @@ const UserProvider = ({ children }) => {
         }
     }
 
+    const signOut = () => {
+        fetch('https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signout', {
+            //fetch("http://localhost:3000/auth/signout", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        }).then(response => {
+            return response.json()
+        }).then(response => {
+            setUser({})
+        })
+    }
+
     useEffect(() => {
-        console.log("USER PROVIDER")
+        setLoading(true)
         fetch("https://iimonj6pmb.execute-api.us-east-1.amazonaws.com/dev/authorize/signin", {
             //fetch("http://localhost:3000/auth/signin", {
             method: 'GET',
@@ -97,23 +106,26 @@ const UserProvider = ({ children }) => {
         }).then(res => {
             return res.json()
         }).then(res => {
-            console.log("SINGING IN: ", res)
             if (res.status === 200) {
                 setSuccessMessage(res.message)
                 setErrorMessage('')
                 setUser(res.user)
                 updateForm(() => ({ ...form, formType: 'signedIn' }))
+                setLoading(false)
             } else {
                 setErrorMessage(res.message)
                 setSuccessMessage('')
+                setLoading(false)
             }
         }).catch((err) => {
             console.log("Error: ", err)
+            setErrorMessage(err)
+            setLoading(false)
         })
     }, [])
 
     return (
-        <context.Provider value={{ user, onChange, switchForm, form, errorMessage, successMessage, signIn, signUp }}>
+        <context.Provider value={{ user, onChange, switchForm, form, errorMessage, successMessage, signIn, signUp, loading, signOut }}>
             {children}
         </context.Provider>
     );
